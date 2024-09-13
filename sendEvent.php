@@ -6,10 +6,10 @@ ini_set('display_errors', 'On');
 require_once(__DIR__ . '/crest.php');
 
 try {
-  $servername = "localhost";
-  $username = "root";
-  $password = "Laravel2024!";
-  $dbname = "calendar";
+  $servername = "173.31.30.43";
+  $username = "bitrix";
+  $password = "8726231";
+  $dbname = "miami";
   $_POST = json_decode(file_get_contents("php://input"), true);
   $user = $_POST['user'];
   $deal = $_POST['deal_id'];
@@ -25,8 +25,12 @@ try {
 
 
   $allPhones = null;
+  $leadName = null;
   if ($currentDeal['result']) {
     $currentDeal = $currentDeal['result'];
+    if (isset($currentDeal['TITLE'])) {
+      $leadName = $currentDeal['TITLE'];
+    }
     $contactId = $currentDeal['CONTACT_ID'];
     if ($contactId) {
       $contactData = crest::call(
@@ -52,8 +56,8 @@ try {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $stmt = $conn->prepare($sql = "INSERT into appointments SET name= ?, status= ?, user= ?, substatus= ?, start = ?, end =?,  date_created = ?, comment = ?, deal_id = ?, phone = ? ");
-  $stmt->bind_param('ssssssssss', $event['title'], $event['BackgroundColor'], $user, $event['substatus'], $event['start'], $event['end'], $now, $event['text'], $deal, $allPhones);
+  $stmt = $conn->prepare($sql = "INSERT into appointments SET name= ?, status= ?, user= ?, substatus= ?, start = ?, end =?,  date_created = ?, comment = ?, deal_id = ?, phone = ? , lead_name = ? ");
+  $stmt->bind_param('sssssssssss', $event['title'], $event['BackgroundColor'], $user, $event['substatus'], $event['start'], $event['end'], $now, $event['text'], $deal, $allPhones, $leadName);
   $result = $stmt->execute();
   $conn->close();
   $response = array(

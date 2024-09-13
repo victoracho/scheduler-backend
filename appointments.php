@@ -45,10 +45,10 @@ if ($substatus) {
 
 $range = explode(",", $range);
 
-$servername = "localhost";
-$username = "root";
-$password = "Laravel2024!";
-$dbname = "calendar";
+$servername = "173.31.30.43";
+$username = "bitrix";
+$password = "8726231";
+$dbname = "miami";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);

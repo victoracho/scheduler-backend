@@ -5,12 +5,11 @@ require_once(__DIR__ . '/crest.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-$servername = "localhost";
-$username = "root";
-$password = "Laravel2024!";
-$dbname = "calendar";
-$name = strval($_GET['name']);
-$name = strtolower($name);
+$servername = "173.31.30.43";
+$username = "bitrix";
+$password = "8726231";
+$dbname = "miami";
+$name = $_GET['name'];
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -18,7 +17,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-$sql = "SELECT * FROM appointments where name LIKE '%$name%' OR  phone LIKE '%$name%'";
+$sql = "SELECT * FROM appointments where name LIKE '%$name%' OR  phone LIKE '%$name%' OR lead_name LIKE '%$name%'";
 
 $result = mysqli_query($conn, $sql);
 $res = [];

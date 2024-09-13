@@ -5,10 +5,10 @@ require_once(__DIR__ . '/crest.php');
 ini_set('display_errors', 'On');
 
 try {
-  $servername = "localhost";
-  $username = "root";
-  $password = "Laravel2024!";
-  $dbname = "calendar";
+  $servername = "173.31.30.43";
+  $username = "bitrix";
+  $password = "8726231";
+  $dbname = "miami";
   $deal_id = $_GET['deal_id'];
 
   // Create connection
