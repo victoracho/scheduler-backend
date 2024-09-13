@@ -5,7 +5,7 @@ require_once(__DIR__ . '/crest.php');
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-$servername = "173.31.30.43";
+$servername = "16.171.204.95";
 $username = "bitrix";
 $password = "8726231";
 $dbname = "miami";

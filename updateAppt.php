@@ -10,7 +10,7 @@ $calendar = CRest::call(
   ],
 );
 $results = $calendar['result'];
-$servername = "173.31.30.43";
+$servername = "16.171.204.95";
 $username = "bitrix";
 $password = "8726231";
 $dbname = "miami";
