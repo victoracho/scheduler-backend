@@ -139,7 +139,7 @@ foreach ($results as $res) {
   if ($res['status'] == 'vip') {
     $quantity['vip']++;
   }
-  if ($res['missing-appointment'] == 'missing-appointment') {
+  if ($res['status'] == 'missing-appointment') {
     $quantity['missing-appointment']++;
   }
 }
