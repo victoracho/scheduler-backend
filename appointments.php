@@ -138,6 +138,9 @@ foreach ($results as $res) {
   if ($res['status'] == 'vip') {
     $quantity['vip']++;
   }
+  if ($res['missing-appt'] == 'missing-appt') {
+    $quantity['missing-appt']++;
+  }
 }
 
 $results = json_encode(array(
