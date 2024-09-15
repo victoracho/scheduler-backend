@@ -5,10 +5,10 @@ header("Access-Control-Allow-Headers: Content-Type");
 ini_set('display_errors', 'On');
 
 try {
-  $servername = "localhost";
-  $username = "root";
-  $password = "Laravel2024!";
-  $dbname = "calendar";
+  $servername = "16.171.204.95";
+  $username = "bitrix";
+  $password = "8726231";
+  $dbname = "miami";
   $_POST = json_decode(file_get_contents("php://input"), true);
   $user = $_POST['user'];
   $eventId = $_POST['event_id'];
