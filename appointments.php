@@ -50,6 +50,8 @@ $username = "bitrix";
 $password = "8726231";
 $dbname = "miami";
 
+
+
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
@@ -83,6 +85,9 @@ if (mysqli_num_rows($result) > 0) {
     }
     if ($res['status'] == 'vip') {
       $status = '#0092cc';
+    }
+    if ($res['status'] == 'missing-appt') {
+      $status = '#683696';
     }
 
     $results[] =
