@@ -32,6 +32,7 @@ header("Access-Control-Allow-Origin: *");
 
 $range = $_GET['range'];
 $status = strtolower($_GET['status']);
+
 $substatus = $_GET['substatus'];
 
 if ($substatus == "") {
@@ -86,7 +87,7 @@ if (mysqli_num_rows($result) > 0) {
     if ($res['status'] == 'vip') {
       $status = '#0092cc';
     }
-    if ($res['status'] == 'missing-appt') {
+    if ($res['status'] == 'missing-appointment') {
       $status = '#683696';
     }
 
@@ -138,7 +139,7 @@ foreach ($results as $res) {
   if ($res['status'] == 'vip') {
     $quantity['vip']++;
   }
-  if ($res['missing-appt'] == 'missing-appt') {
+  if ($res['missing-appointment'] == 'missing-appointment') {
     $quantity['missing-appointment']++;
   }
 }
