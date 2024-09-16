@@ -63,9 +63,7 @@ if (!$conn) {
 if (empty($status)) {
   $status = null;
 }
-
 $sql = "SELECT * FROM appointments where $substatus status in ('$status') AND start between '$range[0]' AND '$range[1]' ";
-
 $result = mysqli_query($conn, $sql);
 $results = [];
 
@@ -103,6 +101,7 @@ if (mysqli_num_rows($result) > 0) {
         'end' => $res['end'],
         'comment' => $res['comment'],
         'substatus' => $res['substatus'],
+        'phone' => $res['phone'],
         'user' => $res['user'],
         'user_modified' => $res['user_modified'],
         'date_created' => $res['date_created'],
