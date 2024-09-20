@@ -47,6 +47,13 @@ function exportar($results)
   $writer->save('php://output');
 }
 
+function giveEdad($edad)
+{
+  if ($edad != null) {
+    $edad = ($edad + 1) - 779;
+  }
+  return $edad;
+}
 
 function giveState($state)
 {
@@ -397,7 +404,7 @@ if (isset($_GET['desde'])) {
               <?= $result['state']; ?>
             </td>
             <td>
-              <?= $result['edad']; ?>
+              <?= giveEdad($result['edad']); ?>
             </td>
           </tr>
         <?php endforeach; ?>
