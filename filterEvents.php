@@ -30,7 +30,7 @@ function exportar($results)
     $sheet->setCellValue('C' . $row, $paciente['name']);
     $sheet->setCellValue('D' . $row, $paciente['status']);
     $sheet->setCellValue('E' . $row, $paciente['state']);
-    $sheet->setCellValue('F' . $row, $paciente['edad']);
+    $sheet->setCellValue('F' . $row, giveEdad($paciente['edad']));
     $row++;
   }
 
