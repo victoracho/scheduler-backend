@@ -213,7 +213,7 @@ function giveState($state)
 
 // obtengo todos los eventos
 $results = [];
-if (isset($_GET['desde'])) {
+if (isset($_GET['desde']) && $_GET['desde'] != null) {
 
   $desde =  $_GET['desde'];
   $desde = DateTime::createFromFormat('d/m/Y', $desde);
@@ -290,10 +290,32 @@ if (isset($_GET['desde'])) {
         }
       }
     }
+    $from = $find['DATE_FROM'];
+    if ($find['TZ_FROM'] == 'Europe/Dublin') {
+      // Crear un objeto DateTime con la zona horaria de Dublín
+      $from = DateTime::createFromFormat('m/d/Y h:i:s a', $from, new DateTimeZone('Europe/Dublin'));
+
+      // Cambiar la zona horaria a Nueva York
+      $from->setTimezone(new DateTimeZone('America/New_York'));
+
+      // Imprimir la fecha y hora convertida
+      $from = $from->format('m/d/Y h:i:s a');
+    }
+    $to = $find['DATE_TO'];
+    if ($find['TZ_TO'] == 'Europe/Dublin') {
+      // Crear un objeto DateTime con la zona horaria de Dublín
+      $to = DateTime::createFromFormat('m/d/Y h:i:s a', $to, new DateTimeZone('Europe/Dublin'));
+
+      // Cambiar la zona horaria a Nueva York
+      $to->setTimezone(new DateTimeZone('America/New_York'));
+
+      // Imprimir la fecha y hora convertida
+      $to = $to->format('m/d/Y h:i:s a');
+    }
     $event = [
       'name' => $find['NAME'],
-      'from' => $find['DATE_FROM'],
-      'to' => $find['DATE_TO'],
+      'from' => $from,
+      'to' => $to,
       'status' => $status,
       'deal_id' => $deal_id,
       'state' => null,
@@ -367,7 +389,7 @@ if (isset($_GET['desde'])) {
     <h2>Lista de citas en Miami</h2>
     <!-- Filtros de Fecha -->
     <label for="fecha_desde">Fecha Desde:</label>
-    <form action="filterEvents.php" method="GET">
+    <form action="miamiCalendar.php" method="GET">
       <input type="text" id="desde" name="desde" placeholder="Selecciona la fecha desde">
       <label for="fecha_hasta">Fecha Hasta:</label>
       <input type="text" id="hasta" name="hasta" placeholder="Selecciona la fecha hasta">
