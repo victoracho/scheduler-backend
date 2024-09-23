@@ -8,7 +8,7 @@ try {
   $servername = "16.171.204.95";
   $username = "bitrix";
   $password = "8726231";
-  $dbname = "miami";
+  $dbname = "newJersey";
   $deal_id = $_GET['deal_id'];
 
   // Create connection

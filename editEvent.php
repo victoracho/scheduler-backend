@@ -8,7 +8,7 @@ try {
   $servername = "16.171.204.95";
   $username = "bitrix";
   $password = "8726231";
-  $dbname = "miami";
+  $dbname = "newJersey";
   $_POST = json_decode(file_get_contents("php://input"), true);
   $user = $_POST['user'];
   $eventId = $_POST['event_id'];

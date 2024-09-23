@@ -8,7 +8,7 @@ ini_set('display_errors', 'On');
 $servername = "16.171.204.95";
 $username = "bitrix";
 $password = "8726231";
-$dbname = "miami";
+$dbname = "newJersey";
 $name = $_GET['name'];
 
 // Create connection
