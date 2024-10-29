@@ -4,11 +4,6 @@ header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-/* $servername = "16.171.204.95"; */
-/* $username = "bitrix"; */
-/* $password = "8726231"; */
-/* $dbname = "scheduler"; */
-
 $servername = "localhost";
 $username = "root";
 $password = "Laravel2024!";

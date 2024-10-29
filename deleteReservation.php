@@ -24,7 +24,7 @@ try {
 
     $sql = "DELETE FROM reservations WHERE  id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $id);
+    $stmt->bind_param('i', $id);
     $result = $stmt->execute();
     $conn->close();
 

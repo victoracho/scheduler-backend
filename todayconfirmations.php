@@ -6,7 +6,7 @@ ini_set('display_errors', '1');
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "Laravel2024!";
 $dbname = "scheduler";
 
 
@@ -21,7 +21,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM confirmantion where date = '$day'";
+$sql = "SELECT * FROM confirmantions where date = '$day'";
 $result = mysqli_query($conn, $sql);
 
 $confirmantions = [];
@@ -37,6 +37,7 @@ if (mysqli_num_rows($result) > 0) {
                 'date' => $res['date'],
                 'reservation' => $res['ID_reservations'],
                 'user' => $res['user'],
+                'status' => $res['status'],
                 'moveDisabled' => $moveDisabled,
                 'resizeDisabled' => $resizeDisabled
             ];
