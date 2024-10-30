@@ -6,10 +6,11 @@ ini_set('display_errors', 'On');
 require_once(__DIR__ . '/crest.php');
 
 try {
-  $servername = "localhost";
-  $username = "root";
-  $password = "Laravel2024!";
-  $dbname = "scheduler";
+  $ini = parse_ini_file('app.ini');
+  $servername = $ini['servername'];
+  $username = $ini['db_user'];
+  $password = $ini['db_password'];
+  $dbname = $ini['db_name'];
 
   $_POST = json_decode(file_get_contents("php://input"), true);
   $user = $_POST['user'];

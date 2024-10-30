@@ -4,10 +4,11 @@ header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-$servername = "localhost";
-$username = "root";
-$password = "Laravel2024!";
-$dbname = "scheduler";
+$ini = parse_ini_file('app.ini');
+$servername = $ini['servername'];
+$username = $ini['db_user'];
+$password = $ini['db_password'];
+$dbname = $ini['db_name'];
 
 $firstDay = $_GET['time'];
 $date = new DateTime($firstDay);
