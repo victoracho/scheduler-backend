@@ -58,10 +58,7 @@ try {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  /* $stmt = $conn->prepare($sql = "INSERT into appointments SET name= ?, status= ?, user= ?, substatus= ?, start = ?, end =?,  date_created = ?, comment = ?, deal_id = ?, phone = ? , lead_name = ?, lodging = ?, transportation = ?, more_invoices = ?, amount= ?, invoice_number = ?, edad = ?, estado = ? "); */
-  /* $stmt->bind_param('ssssssssssssssssss', $event['title'], $event['BackgroundColor'], $user, $event['substatus'], $event['start'], $event['end'], $now, $event['text'], $deal, $allPhones, $leadName, $event['lodging'], $event['transportation'], $event['more_invoices'], $event['amount'], $event['invoice_number'], $edad, $state); */
-
-  $stmt = $conn->prepare($sql = "INSERT into reservations SET name= ?, status= ?, user_created= ?, date_created = ?, start = ?, end =?,   comentary = ?, deal_id = ?, phone = ? , lead_name = ? ");
+  $stmt = $conn->prepare($sql = "INSERT into reservations SET name= ?, status= ?, start = ?, end =?, user_created= ?, date_created = ?, comentary = ?,apartment_id = ?, crm = ? , deal_id = ?, building_id = ?, visitors = ? ");
   $stmt->bind_param('ssssssssss', $event['title'], $event['BackgroundColor'], $user, $event['substatus'], $event['start'], $event['end'], $now, $event['text'], $deal, $allPhones, $leadName, $event['lodging'], $event['transportation'], $event['more_invoices'], $event['amount'], $event['invoice_number'], $edad, $state);
 
   $result = $stmt->execute();
