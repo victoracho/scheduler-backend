@@ -29,7 +29,7 @@ try {
   $end = $_GET['end'];
   $comentary = $_GET['comentary'];
   $date_modified = new DateTime();
-  $date_modified = $date_modified->format('Y-m-d');
+  $date_modified = $date_modified->format('Y-m-d\TH:i:s');
   $user_modified = 'j.noy';
   $visitors = $_GET['visitors'];
 
