@@ -25,8 +25,8 @@ try {
 
   //test campos
   $name = $_GET['name'];
-  $start = $_GET['start'];;
-  $end = $_GET['end'];;
+  $start = $_GET['start'];
+  $end = $_GET['end'];
   $comentary = $_GET['comentary'];
   $date_modified = new DateTime();
   $date_modified = $date_modified->format('Y-m-d');
