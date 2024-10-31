@@ -35,11 +35,21 @@ if (mysqli_num_rows($result) > 0) {
     $reservations[] =
       [
         'id' => $res['id'],
-        'deal_id' => $res['deal_id'],
-        'resource' => 'a' . $res['apartment_id'],
+        'name' => $res['name'],
+        'status' => $res['status'],
         'start' => $res['start'],
         'end' => $res['end'],
+        'user_created' => $res['user_created'],
+        'date_created' => $res['date_created'],
         'text' => $res['comentary'],
+        'user_modified' => $res['user_modified'],
+        'date_modified' => $res['date_modified'],
+        'crm' => $res['crm'],
+        'deal_id' => $res['deal_id'],
+        'visitors' => $res['visitors'],
+        'resource' => 'a' . $res['apartment_id'],
+
+
         'moveDisabled' => $moveDisabled,
         'resizeDisabled' => $resizeDisabled
       ];
