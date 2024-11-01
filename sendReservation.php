@@ -13,9 +13,10 @@ try {
   $dbname = $ini['db_name'];
 
   $_POST = json_decode(file_get_contents("php://input"), true);
+
+  /*
   $user = $_POST['user'];
   $deal = $_POST['deal_id'];
-  $event = $_POST['reservation'];
   $now = date('Y-m-d\TH:i:sP');
   $currentDeal = crest::call(
     'crm.deal.get',
@@ -23,35 +24,7 @@ try {
       'id' => $deal
     ],
   );
-
-  $allPhones = null;
-  $leadName = null;
-  $edad = null;
-  $state = null;
-  if ($currentDeal['result']) {
-    // se checa la edad y el estado
-    $currentDeal = $currentDeal['result'];
-    if (isset($currentDeal['TITLE'])) {
-      $leadName = $currentDeal['TITLE'];
-    }
-    $contactId = $currentDeal['CONTACT_ID'];
-    if ($contactId) {
-      $contactData = crest::call(
-        'crm.contact.get',
-        [
-          'id' => $contactId
-        ],
-      );
-      if ($contactData && isset($contactData['result'])) {
-        $contact = $contactData['result'];
-        $phones = $contact['PHONE'];
-        $allPhones = '';
-        foreach ($phones as $phone) {
-          $allPhones .= ' ' .  $phone['VALUE'];
-        }
-      }
-    }
-  }
+  */
 
   $conn = new mysqli($servername, $username, $password, $dbname);
   // Check connection
@@ -59,14 +32,29 @@ try {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $stmt = $conn->prepare($sql = "INSERT into reservations SET name= ?, status= ?, start = ?, end =?, user_created= ?, date_created = ?, comentary = ?,apartment_id = ?, crm = ? , deal_id = ?, building_id = ?, visitors = ? ");
-  $stmt->bind_param('ssssssssss', $event['title'], $event['BackgroundColor'], $user, $event['substatus'], $event['start'], $event['end'], $now, $event['text'], $deal, $allPhones, $leadName, $event['lodging'], $event['transportation'], $event['more_invoices'], $event['amount'], $event['invoice_number'], $edad, $state);
+    $name = $_GET['name'];
+    $status = "STATUS TEMP";
+    $start = $_GET['start'];
+    $end = $_GET['end'];
+    $user_created = 'user.temp';
+    $date_created = new DateTime();
+    $date_created = $date_created->format('Y-m-d\TH:i:s');
+    $comentary = $_GET['comentary'];
+    $apartment_ID = $_GET['apartment_ID'];
+    $crm = 'DASO TEST';
+    $deal_id = "DEAL TEST";
+    $visitors = $_GET['visitors'];
+
+  $stmt = $conn->prepare($sql = "INSERT into reservations SET name= ?, status= ?, start = ?, end =?, user_created= ?, date_created = ?, comentary = ?,apartment_id = ?, crm = ? , deal_id = ?, visitors = ? ");
+  $stmt->bind_param('sssssssssss', $name, $status, $start, $end, $user_created, $date_created, $comentary, $apartment_ID, $crm, $deal_id, $visitors);
 
   $result = $stmt->execute();
   $conn->close();
   $response = array(
     'message' => 'Added Succesfully'
   );
+
+  /*
   $desde = $event['start'];
   $desde = new DateTime($desde);
   $desde = $desde->format('Y-m-d H:i');
@@ -74,7 +62,9 @@ try {
   $hasta = $event['end'];
   $hasta = new DateTime($hasta);
   $hasta = $hasta->format('Y-m-d H:i');
+  /*
 
+  /*
   $comment = CRest::call(
     'crm.timeline.comment.add',
     [
@@ -85,6 +75,8 @@ try {
       ],
     ],
   );
+  */
+
   echo json_encode($response);
 } catch (Exception $e) {
   $response = array(
