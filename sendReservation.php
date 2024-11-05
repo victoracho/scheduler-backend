@@ -33,7 +33,7 @@ try {
   }
 
     $name = $_GET['name'];
-    $status = "STATUS TEMP";
+    $status = "reserved";
     $start = $_GET['start'];
     $end = $_GET['end'];
     $user_created = 'user.temp';
@@ -47,8 +47,31 @@ try {
 
   $stmt = $conn->prepare($sql = "INSERT into reservations SET name= ?, status= ?, start = ?, end =?, user_created= ?, date_created = ?, comentary = ?,apartment_id = ?, crm = ? , deal_id = ?, visitors = ? ");
   $stmt->bind_param('sssssssssss', $name, $status, $start, $end, $user_created, $date_created, $comentary, $apartment_ID, $crm, $deal_id, $visitors);
-
   $result = $stmt->execute();
+
+    function getDateRange($startDate, $endDate) {
+        $startDate = new DateTime($startDate);
+        $endDate = new DateTime($endDate);
+        //$endDate->modify('+1 day');
+        $interval = new DateInterval('P1D');
+        $dateRange = new DatePeriod($startDate, $interval, $endDate);
+
+        return $dateRange;
+    }
+
+    $dateRange = getDateRange($start, $end);
+
+    $lastId = $stmt->insert_id;
+    $status = "unconfirmed";
+    foreach ($dateRange as $date) {
+        $date_s = $date->format('Y-m-d\TH:i:s');
+        $stmt = $conn->prepare($sql = "INSERT into confirmantions SET date= ?, ID_reservations= ?,  status= ? ");
+        $stmt->bind_param('sis',$date_s, $lastId, $status);
+        $result = $stmt->execute();
+    }
+
+
+
   $conn->close();
   $response = array(
     'message' => 'Added Succesfully'
