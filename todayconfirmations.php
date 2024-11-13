@@ -12,7 +12,7 @@ $dbname = $ini['db_name'];
 
 //$day = $_GET['time'];
 //$day = '2024-10-25T08:00:00';
-$day = date("Y-m-d");
+$day = date("Y-m-d\T00:00:00");
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -21,7 +21,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM confirmantions where date = '$day'";
+$sql = "SELECT * FROM confirmantions where date = '$day' AND status = 'unconfirmed'";
 $result = mysqli_query($conn, $sql);
 
 $confirmantions = [];
