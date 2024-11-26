@@ -39,7 +39,7 @@ try {
     $date = $res['date'];
     // TODO FIX THIS
     $date = new DateTime($date);
-    $date  = $date->format('Y-m-d\T11:50:00');
+    $date  = $date->format('Y-m-d\T23:50:00');
     $id_reservation = $res['id_reservations'];
 
 
