@@ -64,7 +64,7 @@ try {
     $lastId = $stmt->insert_id;
     $status = "unconfirmed";
     foreach ($dateRange as $date) {
-        $date_s = $date->format('Y-m-d\TH:i:s');
+        $date_s = $date->format('Y-m-d\T00:00:00');
         $stmt = $conn->prepare($sql = "INSERT into confirmantions SET date= ?, ID_reservations= ?,  status= ? ");
         $stmt->bind_param('sis',$date_s, $lastId, $status);
         $result = $stmt->execute();
