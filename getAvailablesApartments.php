@@ -38,7 +38,7 @@ if (mysqli_num_rows($result) > 0) {
 
 $apts = [];
 
-$sql = "SELECT id as apartment_id FROM apartments WHERE building_id = $build";
+$sql = "SELECT id as apartment_id FROM apartments WHERE building_id = $build AND status != 'locked'";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
