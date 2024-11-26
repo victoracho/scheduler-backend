@@ -58,7 +58,7 @@ function getAvailablesApt($reservations, $start, $end, $apts) {
 
     $apartments = array_unique(array_column($apts, 'apartment_id'));
 
-    $available = [];
+    $available = ['N/A'];
     foreach ($apartments as $apartment) {
         $overlap = false;
         foreach ($reservations as $reservation) {
