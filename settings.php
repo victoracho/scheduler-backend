@@ -1,5 +1,6 @@
 <?php
-define('C_REST_WEB_HOOK_URL', 'https://btx.dds.miami/rest/10476/1mewdlanh4kgrnos/');//url on creat Webhook
+$ini = parse_ini_file('app.ini');
+define('C_REST_WEB_HOOK_URL', $ini['btx_url']);//url on creat Webhook
 //define('C_REST_CURRENT_ENCODING','windows-1251');
 //define('C_REST_IGNORE_SSL',true);//turn off validate ssl by curl
 //define('C_REST_LOG_TYPE_DUMP',true); //logs save var_export for viewing convenience
