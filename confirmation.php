@@ -37,6 +37,7 @@ try {
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
     $date = $res['date'];
+    $date  = $date->format('Y-m-d\T11:50:00');
     $id_reservation = $res['id_reservations'];
 
 
