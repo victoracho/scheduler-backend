@@ -82,8 +82,6 @@ try {
   $result = $stmt->execute();
 
 
-  // TODO  CUANDO SE EDITA UN RESERVA REORGANIZAR LAS CONFIRMACIONES
-
     // SI S > OS = DELETE DONE
     if (new DateTime($start) > new DateTime($old_start)) {
         //echo "DELETE OS-S";

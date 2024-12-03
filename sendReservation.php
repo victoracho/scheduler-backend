@@ -33,7 +33,7 @@ try {
   }
 
     $name = $_GET['name'];
-    $status = "reserved";
+    $status = "prebooked";
     $start = $_GET['start'];
     $end = $_GET['end'];
     $user_created = 'user.temp';
