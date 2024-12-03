@@ -33,6 +33,12 @@ try {
   $stmt->bind_param('si', $status, $id);
   $result = $stmt->execute();
 
+  $conf_status = "unconfirmed";
+  $sql = "UPDATE confirmantions SET status= ? WHERE  ID_reservations = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param('si', $conf_status, $id);
+  $result = $stmt->execute();
+
   $conn->close();
 
   $response = array(
