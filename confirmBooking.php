@@ -16,6 +16,8 @@ try {
   //$id = 5;
   $id = preg_replace('~\D~', '', $id);
 
+  $status = $_GET['status'];
+
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -24,17 +26,17 @@ try {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $status = $_GET['status'];
+
 
   $sql = "UPDATE reservations SET status= ? WHERE  id = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('s', $status);
+  $stmt->bind_param('s', $status, $id);
   $result = $stmt->execute();
 
   $conn->close();
 
   $response = array(
-    'message' => 'EDITED Succesfully'
+    'message' => 'Confirmed Succesfully'
   );
   echo json_encode($response);
 } catch (Exception $e) {
