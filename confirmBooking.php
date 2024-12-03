@@ -30,7 +30,7 @@ try {
 
   $sql = "UPDATE reservations SET status= ? WHERE  id = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('s', $status, $id);
+  $stmt->bind_param('si', $status, $id);
   $result = $stmt->execute();
 
   $conn->close();
