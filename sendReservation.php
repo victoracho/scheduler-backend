@@ -36,12 +36,12 @@ try {
     $status = "prebooked";
     $start = $_GET['start'];
     $end = $_GET['end'];
-    $user_created = 'user.temp';
+    $user_created = $_GET['user'];
     $date_created = new DateTime();
     $date_created = $date_created->format('Y-m-d\TH:i:s');
     $comentary = $_GET['comentary'];
     $apartment_ID = $_GET['apartment_ID'];
-    $crm = 'DASO TEST';
+    $crm = $_GET['crm'];
     $deal_id = "DEAL TEST";
     $visitors = $_GET['visitors'];
 

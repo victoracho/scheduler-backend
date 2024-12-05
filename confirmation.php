@@ -26,7 +26,7 @@ try {
     //$date = $_GET['date'];
     $status = $_GET['status'];
     //$id_reservation = $_GET['ID_reservation'];
-    $user = "johan.confirm";
+    $user = $_GET['user'];
     $sql = "UPDATE confirmantions SET status = ?, user = ? WHERE  id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('ssi', $status, $user_modified, $id);

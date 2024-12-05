@@ -63,7 +63,7 @@ try {
   $comentary = $_GET['comentary'];
   $date_modified = new DateTime();
   $date_modified = $date_modified->format('Y-m-d\TH:i:s');
-  $user_modified = 'j.noy';
+  $user_modified = $_GET['user'];
   $visitors = $_GET['visitors'];
 
     // OBTENER FECHAS VIEJAS
