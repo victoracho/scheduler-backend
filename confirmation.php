@@ -29,7 +29,7 @@ try {
     $user = $_GET['user'];
     $sql = "UPDATE confirmantions SET status = ?, user = ? WHERE  id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('ssi', $status, $user_modified, $id);
+    $stmt->bind_param('ssi', $status, $user, $id);
     $result = $stmt->execute();
 
     $sql = "SELECT date, id_reservations FROM confirmantions WHERE  id = " . $id;
