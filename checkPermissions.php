@@ -25,12 +25,12 @@ try {
     $stmt = $conn->prepare($sql);
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
-    //$permissions = $res['permissions'];
+    $permissions = $res['permissions'];
 
     $conn->close();
 
-    //var_dump($permissions);
-    //var_dump($res);
+    var_dump($permissions);
+    var_dump($res);
 } catch (Exception $e) {
     $response = array(
         'message' => $e->getMessage()
