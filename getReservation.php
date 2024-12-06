@@ -35,6 +35,7 @@ try {
       'end' => $res['end'],
       'comentary' => $res['comentary'],
       'visitors' => $res['visitors'],
+      'crm' => $res['crm'],
     ];
 
   $conn->close();
