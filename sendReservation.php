@@ -42,7 +42,7 @@ try {
     $comentary = $_GET['comentary'];
     $apartment_ID = $_GET['apartment_ID'];
     $crm = $_GET['crm'];
-    $deal_id = "DEAL TEST";
+    $deal_id = $_GET['deal_id'];
     $visitors = $_GET['visitors'];
 
   $stmt = $conn->prepare($sql = "INSERT into reservations SET name= ?, status= ?, start = ?, end =?, user_created= ?, date_created = ?, comentary = ?,apartment_id = ?, crm = ? , deal_id = ?, visitors = ? ");
