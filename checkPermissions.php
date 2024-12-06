@@ -21,7 +21,7 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM reservations WHERE  name = $name";
+    $sql = "SELECT * FROM reservations WHERE  name = '$name'";
     $stmt = $conn->prepare($sql);
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
@@ -30,7 +30,7 @@ try {
     $conn->close();
 
     //var_dump($permissions);
-    var_dump($res);
+    //var_dump($res);
 } catch (Exception $e) {
     $response = array(
         'message' => $e->getMessage()
