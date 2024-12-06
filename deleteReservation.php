@@ -23,7 +23,7 @@ try {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  $sql = "DELETE FROM reservations WHERE  id = ?";
+  $sql = "UPDATE reservations SET status = 'deleted' WHERE  id = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param('i', $id);
   $result = $stmt->execute();
