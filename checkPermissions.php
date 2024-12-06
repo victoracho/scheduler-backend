@@ -21,16 +21,18 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM reservations WHERE  name = '$name'";
+    $sql = "SELECT * FROM users WHERE  name = '$name'";
     $stmt = $conn->prepare($sql);
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
-    $permissions = $res['permissions'];
 
     $conn->close();
-
+    if($res == null){
+        $permissions = "DENIED";
+    }else{
+        $permissions = $res['permissions'];
+    }
     var_dump($permissions);
-    var_dump($res);
 } catch (Exception $e) {
     $response = array(
         'message' => $e->getMessage()
