@@ -27,6 +27,12 @@ try {
   $stmt = $conn->prepare($sql);
   $stmt->bind_param('i', $id);
   $result = $stmt->execute();
+
+    $sql = "UPDATE confirmantions SET status = 'deleted' WHERE  ID_reservations = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $id);
+    $result = $stmt->execute();
+
   $conn->close();
 
   $response = array(
