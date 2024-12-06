@@ -22,7 +22,7 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM reservations where start between '$firstDay' and  '$lastDay' ";
+$sql = "SELECT * FROM reservations where start between '$firstDay' and  '$lastDay' AND status <> 'deleted'";
 $result = mysqli_query($conn, $sql);
 
 $reservations = [];
