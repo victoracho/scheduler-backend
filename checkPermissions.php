@@ -21,7 +21,7 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "SELECT * FROM reservations WHERE  name = " . $name;
+    $sql = "SELECT * FROM reservations WHERE  name = $name";
     $stmt = $conn->prepare($sql);
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
