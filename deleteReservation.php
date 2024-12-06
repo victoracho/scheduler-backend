@@ -22,10 +22,12 @@ try {
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
-
-  $sql = "UPDATE reservations SET status = 'deleted' WHERE  id = ?";
+  $date_modified = new DateTime();
+  $date_modified = $date_modified->format('Y-m-d\TH:i:s');
+  $user_modified = $_GET['user'];
+  $sql = "UPDATE reservations SET status = 'deleted', date_modified = ? , user_modified = ? WHERE  id = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('i', $id);
+  $stmt->bind_param('ssi', $date_modified, $user_modified, $id);
   $result = $stmt->execute();
 
     $sql = "UPDATE confirmantions SET status = 'deleted' WHERE  ID_reservations = ?";
