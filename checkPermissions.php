@@ -32,7 +32,7 @@ try {
     }else{
         $permissions = $res['permissions'];
     }
-    var_dump($permissions);
+    echo $permissions;
 } catch (Exception $e) {
     $response = array(
         'message' => $e->getMessage()
