@@ -13,7 +13,6 @@ try {
   $dbname = $ini['db_name'];
 
   $id = $_GET['id'];
-  //$id = 5;
   $id = preg_replace('~\D~', '', $id);
 
   $status = $_GET['status'];

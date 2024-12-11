@@ -21,6 +21,8 @@ try {
     $password = $ini['db_password'];
     $dbname = $ini['db_name'];
 
+    $id = $_GET['id'];
+    $id = preg_replace('~\D~', '', $id);
     $code = $_GET['code'];
     $deal_id = $_GET['deal_id'];
 
@@ -32,9 +34,9 @@ try {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "UPDATE reservations set  code = ?";
+    $sql = "UPDATE reservations set  code = ? WHERE  id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('s', $code);
+    $stmt->bind_param('si', $code, $id);
     $result = $stmt->execute();
 
 
