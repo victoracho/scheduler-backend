@@ -47,6 +47,7 @@ if (mysqli_num_rows($result) > 0) {
         'crm' => $res['crm'],
         'deal_id' => $res['deal_id'],
         'visitors' => $res['visitors'],
+        'code' => $res['code'],
         'resource' => 'a' . $res['apartment_id'],
 
 
