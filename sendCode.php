@@ -52,6 +52,8 @@ try {
 
 //$deal_id = '55066';
 
+$sms_text = 'Your Room Code is '.$code;
+
 if ($crm == "DASO"){
     $sms = CRestDASO::call(
         'bizproc.workflow.start',
@@ -63,10 +65,33 @@ if ($crm == "DASO"){
                 $deal_id
             ],
             'PARAMETERS' => [
-                'TEXT' => 'Your Room Code is '.$code
+                'TEXT' => $sms_text
             ]
         ]
     );
+
+
+    $result = CRestDDS::call(
+        'crm.activity.list',
+        [
+            'order' => [ 'ID' => 'DESC' ],
+            'filter' => [
+                'DESCRIPTION' => $sms_text,
+                'SUBJECT' => "Outbound SMS message",
+            ],
+            'select' => [ 'ID', 'DESCRIPTION' , 'SUBJECT', ],
+        ]
+    );
+
+    $act_id =$result["result"][0]["ID"];
+
+    $result = CRestDASO::call(
+        'crm.activity.delete',
+        [
+            'id' =>  $act_id
+        ]
+    );
+
     echo "DASO MESSENGE SUCCESSFULLY";
 }
 
