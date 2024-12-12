@@ -83,7 +83,6 @@ if ($crm == "DASO"){
         ]
     );
 
-    var_dump($result);
 
     $act_id =$result["result"][0]["ID"];
 
@@ -94,7 +93,6 @@ if ($crm == "DASO"){
         ]
     );
 
-    var_dump($result);
 
     echo "DASO MESSENGE SUCCESSFULLY";
 }
@@ -114,6 +112,29 @@ if ($crm == "DDS"){
             ]
         ]
     );
+
+    $result = CRestDDS::call(
+        'crm.activity.list',
+        [
+            'order' => [ 'ID' => 'DESC' ],
+            'filter' => [
+                'DESCRIPTION' => $sms_text,
+                'SUBJECT' => "Outbound SMS message",
+            ],
+            'select' => [ 'ID', 'DESCRIPTION' , 'SUBJECT', ],
+        ]
+    );
+
+
+    $act_id =$result["result"][0]["ID"];
+
+    $result = CRestDDS::call(
+        'crm.activity.delete',
+        [
+            'id' =>  $act_id
+        ]
+    );
+
     echo "DDS MESSENGE SUCCESSFULLY";
 }
 
@@ -130,6 +151,28 @@ if ($crm == "ECL"){
             'PARAMETERS' => [
                 'TEXT' => 'Your Room Code is '.$code
             ]
+        ]
+    );
+
+    $result = CRestECL::call(
+        'crm.activity.list',
+        [
+            'order' => [ 'ID' => 'DESC' ],
+            'filter' => [
+                'DESCRIPTION' => $sms_text,
+                'SUBJECT' => "Outbound SMS message",
+            ],
+            'select' => [ 'ID', 'DESCRIPTION' , 'SUBJECT', ],
+        ]
+    );
+
+
+    $act_id =$result["result"][0]["ID"];
+
+    $result = CRestECL::call(
+        'crm.activity.delete',
+        [
+            'id' =>  $act_id
         ]
     );
     echo "ECL MESSENGE SUCCESSFULLY";
