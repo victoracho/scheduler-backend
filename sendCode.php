@@ -71,7 +71,7 @@ if ($crm == "DASO"){
     );
 
 
-    $result = CRestDDS::call(
+    $result = CRestDASO::call(
         'crm.activity.list',
         [
             'order' => [ 'ID' => 'DESC' ],
@@ -83,6 +83,8 @@ if ($crm == "DASO"){
         ]
     );
 
+    var_dump($result);
+
     $act_id =$result["result"][0]["ID"];
 
     $result = CRestDASO::call(
@@ -91,6 +93,8 @@ if ($crm == "DASO"){
             'id' =>  $act_id
         ]
     );
+
+    var_dump($result);
 
     echo "DASO MESSENGE SUCCESSFULLY";
 }
