@@ -89,10 +89,10 @@ try {
 
 
   $desde = new DateTime($start);
-  $desde = $desde->format('Y-m-d H:i');
+  $desde = $desde->format('M d, Y');
 
   $hasta = new DateTime($end);
-  $hasta = $hasta->format('Y-m-d H:i');
+  $hasta = $hasta->format('M d, Y');
 
 
 
