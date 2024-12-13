@@ -88,11 +88,11 @@ try {
   );
 
 
-  //$desde = new DateTime($start);
-  //$desde = $desde->format('Y-m-d H:i');
+  $desde = new DateTime($start);
+  $desde = $desde->format('Y-m-d H:i');
 
-  //$hasta = new DateTime($end);
-  //$hasta = $hasta->format('Y-m-d H:i');
+  $hasta = new DateTime($end);
+  $hasta = $hasta->format('Y-m-d H:i');
 
 
 
@@ -102,7 +102,7 @@ try {
       'fields' =>  [
         'ENTITY_ID' => $deal_id,
         'ENTITY_TYPE' => "deal",
-        'COMMENT' => 'A new pre-reservation From Oct 12/25/2024 to 01/12/2025 has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+        'COMMENT' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
       ],
     ],
   );
@@ -111,7 +111,7 @@ try {
         'im.notify.system.add',
         [
             'USER_ID' => 41080,
-            'MESSAGE' => 'A new pre-reservation From Oct 12/25/2024 to 01/12/2025 has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+            'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
         ]
     );
 
