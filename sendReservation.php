@@ -106,6 +106,14 @@ try {
               ],
           ],
       );
+
+      $result = CRestDASO::call(
+          'im.notify.system.add',
+          [
+              'USER_ID' => 41080,
+              'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+          ]
+      );
   }
 
     if ($crm = "DDS"){
@@ -134,13 +142,7 @@ try {
         );
     }
 
-    $result = CRestDASO::call(
-        'im.notify.system.add',
-        [
-            'USER_ID' => 41080,
-            'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
-        ]
-    );
+
 
 
   echo json_encode($response);
