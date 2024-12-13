@@ -127,6 +127,14 @@ try {
                 ],
             ],
         );
+
+        $result = CRestDDS::call(
+            'im.notify.system.add',
+            [
+                'USER_ID' => 61086,
+                'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+            ]
+        );
     }
 
     if ($crm = "ECL"){
@@ -139,6 +147,14 @@ try {
                     'COMMENT' => "A new pre-reservation From $desde to $hasta has been added to the <a href=\"https://crm.eyescolorlab.com/devops/placement/62/?params%5BID%5D=$deal_id\">Calendar</a>",
                 ],
             ],
+        );
+
+        $result = CRestECL::call(
+            'im.notify.system.add',
+            [
+                'USER_ID' => 10763,
+                'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+            ]
         );
     }
 
