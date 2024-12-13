@@ -132,7 +132,7 @@ try {
             'im.notify.system.add',
             [
                 'USER_ID' => 61086,
-                'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+                'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://dds.miami/devops/placement/62/">Calendar</a>',
             ]
         );
     }
@@ -157,6 +157,15 @@ try {
             ]
         );
     }
+
+    // TODO SEND NOTIFY TO JC
+    $result = CRestDDS::call(
+        'im.notify.system.add',
+        [
+            'USER_ID' => 61086,
+            'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://dds.miami/devops/placement/62/">Calendar</a>',
+        ]
+    );
 
 
 
