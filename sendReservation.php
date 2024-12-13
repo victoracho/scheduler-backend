@@ -95,7 +95,7 @@ try {
   $hasta = $hasta->format('M d, Y');
 
 
-  if ($crm = "DASO"){
+  if ($crm == "DASO"){
       $comment = CRestDASO::call(
           'crm.timeline.comment.add',
           [
@@ -116,7 +116,7 @@ try {
       );
   }
 
-    if ($crm = "DDS"){
+    if ($crm == "DDS"){
         $comment = CRestDDS::call(
             'crm.timeline.comment.add',
             [
@@ -137,7 +137,7 @@ try {
         );
     }
 
-    if ($crm = "ECL"){
+    if ($crm == "ECL"){
         $comment = CRestECL::call(
             'crm.timeline.comment.add',
             [
