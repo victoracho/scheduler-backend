@@ -77,28 +77,34 @@ try {
     'message' => 'Added Succesfully'
   );
 
-  /*
-  $desde = $event['start'];
-  $desde = new DateTime($desde);
+
+  $desde = new DateTime($start);
   $desde = $desde->format('Y-m-d H:i');
 
-  $hasta = $event['end'];
-  $hasta = new DateTime($hasta);
+  $hasta = new DateTime($end);
   $hasta = $hasta->format('Y-m-d H:i');
-  /*
 
-  /*
+
+
   $comment = CRest::call(
     'crm.timeline.comment.add',
     [
       'fields' =>  [
-        'ENTITY_ID' => $deal,
+        'ENTITY_ID' => $deal_id,
         'ENTITY_TYPE' => "deal",
-        'COMMENT' => "A reservation has been created for the type: " . $event['BackgroundColor'] . ' From: ' . $desde . ' Until: ' . $hasta . ' created by: ' . $user . ' for Miami Calendar'
+        'COMMENT' => 'A new pre-reservation From Oct 12/25/2024 to 01/12/2025 has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
       ],
     ],
   );
-  */
+
+    $result = CRest::call(
+        'im.notify.system.add',
+        [
+            'USER_ID' => 41080,
+            'MESSAGE' => 'A new pre-reservation From Oct 12/25/2024 to 01/12/2025 has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
+        ]
+    );
+
 
   echo json_encode($response);
 } catch (Exception $e) {
