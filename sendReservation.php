@@ -1,9 +1,19 @@
 <?php
+
+$crm = $_GET['crm'];
+if ($crm == "DASO"){
+    require_once(__DIR__ . '/CRestDASO.php');
+}if ($crm == "DDS"){
+    require_once(__DIR__ . '/CRestDDS.php');
+}if ($crm == "ECL"){
+    require_once(__DIR__ . '/CRestECL.php');
+}
+
 header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
 header("Access-Control-Allow-Headers: Content-Type");
 ini_set('display_errors', 'On');
-require_once(__DIR__ . '/crest.php');
+//require_once(__DIR__ . '/crest.php');
 
 try {
   $ini = parse_ini_file('app.ini');
@@ -41,7 +51,7 @@ try {
     $date_created = $date_created->format('Y-m-d\TH:i:s');
     $comentary = $_GET['comentary'];
     $apartment_ID = $_GET['apartment_ID'];
-    $crm = $_GET['crm'];
+    //$crm = $_GET['crm'];
     $deal_id = $_GET['deal_id'];
     $visitors = $_GET['visitors'];
 
@@ -78,15 +88,15 @@ try {
   );
 
 
-  $desde = new DateTime($start);
-  $desde = $desde->format('Y-m-d H:i');
+  //$desde = new DateTime($start);
+  //$desde = $desde->format('Y-m-d H:i');
 
-  $hasta = new DateTime($end);
-  $hasta = $hasta->format('Y-m-d H:i');
+  //$hasta = new DateTime($end);
+  //$hasta = $hasta->format('Y-m-d H:i');
 
 
 
-  $comment = CRest::call(
+  $comment = CRestDASO::call(
     'crm.timeline.comment.add',
     [
       'fields' =>  [
@@ -97,7 +107,7 @@ try {
     ],
   );
 
-    $result = CRest::call(
+    $result = CRestDASO::call(
         'im.notify.system.add',
         [
             'USER_ID' => 41080,
