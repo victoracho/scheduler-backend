@@ -95,17 +95,44 @@ try {
   $hasta = $hasta->format('M d, Y');
 
 
+  if ($crm = "DASO"){
+      $comment = CRestDASO::call(
+          'crm.timeline.comment.add',
+          [
+              'fields' =>  [
+                  'ENTITY_ID' => $deal_id,
+                  'ENTITY_TYPE' => "deal",
+                  'COMMENT' => "A new pre-reservation From $desde to $hasta has been added to the <a href=\"https://daso.dds.miami/devops/placement/62/?params%5BID%5D=$deal_id\">Calendar</a>",
+              ],
+          ],
+      );
+  }
 
-  $comment = CRestDASO::call(
-    'crm.timeline.comment.add',
-    [
-      'fields' =>  [
-        'ENTITY_ID' => $deal_id,
-        'ENTITY_TYPE' => "deal",
-        'COMMENT' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://daso.dds.miami/devops/placement/62/">Calendar</a>',
-      ],
-    ],
-  );
+    if ($crm = "DDS"){
+        $comment = CRestDDS::call(
+            'crm.timeline.comment.add',
+            [
+                'fields' =>  [
+                    'ENTITY_ID' => $deal_id,
+                    'ENTITY_TYPE' => "deal",
+                    'COMMENT' => "A new pre-reservation From $desde to $hasta has been added to the <a href=\"https://dds.miami/devops/placement/62/?params%5BID%5D=$deal_id\">Calendar</a>",
+                ],
+            ],
+        );
+    }
+
+    if ($crm = "ECL"){
+        $comment = CRestECL::call(
+            'crm.timeline.comment.add',
+            [
+                'fields' =>  [
+                    'ENTITY_ID' => $deal_id,
+                    'ENTITY_TYPE' => "deal",
+                    'COMMENT' => "A new pre-reservation From $desde to $hasta has been added to the <a href=\"https://crm.eyescolorlab.com/devops/placement/62/?params%5BID%5D=$deal_id\">Calendar</a>",
+                ],
+            ],
+        );
+    }
 
     $result = CRestDASO::call(
         'im.notify.system.add',
