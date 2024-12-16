@@ -53,7 +53,7 @@ try {
 //$deal_id = '55066';
 
 // TODO CAMBIAR TEXTO DE MENSAJE
-$sms_text = 'Your Room Code is '.$code;
+$sms_text = 'Your Apartment Code is '.$code;
 
 if ($crm == "DASO"){
     $sms = CRestDASO::call(
