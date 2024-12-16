@@ -1,5 +1,6 @@
 <?php
 
+/*
 $crm = $_GET['crm'];
 if ($crm == "DASO"){
     require_once(__DIR__ . '/CRestDASO.php');
@@ -8,6 +9,9 @@ if ($crm == "DASO"){
 }if ($crm == "ECL"){
     require_once(__DIR__ . '/CRestECL.php');
 }
+*/
+
+require_once(__DIR__ . '/CRestDDS.php');
 
 header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
@@ -95,6 +99,7 @@ try {
   $hasta = $hasta->format('M d, Y');
 
 
+  /*
   if ($crm == "DASO"){
       $comment = CRestDASO::call(
           'crm.timeline.comment.add',
@@ -157,6 +162,15 @@ try {
             ]
         );
     }
+  */
+
+    $result = CRestDDS::call(
+        'im.notify.system.add',
+        [
+            'USER_ID' => 61086,
+            'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://dds.miami/devops/placement/62/">Calendar</a>',
+        ]
+    );
 
 
 
