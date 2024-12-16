@@ -55,7 +55,7 @@ try {
 $sms_end = 'Today is your reservation in Apartment '.$apt.' your Entry Code is '.$code;
 
 if ($crm == "DASO"){
-    $sms_text = "Hi we are you Plastic Surgery Clinic" . $sms_end;
+    $sms_text = "Hi we are you Plastic Surgery Clinic, " . $sms_end;
     $sms = CRestDASO::call(
         'bizproc.workflow.start',
         [
@@ -99,7 +99,7 @@ if ($crm == "DASO"){
 }
 
 if ($crm == "DDS"){
-    $sms_text = "Hi we are Dental Design Smile" . $sms_end;
+    $sms_text = "Hi we are Dental Design Smile, " . $sms_end;
     $sms = CRestDDS::call(
         'bizproc.workflow.start',
         [
@@ -141,7 +141,7 @@ if ($crm == "DDS"){
 }
 
 if ($crm == "ECL"){
-    $sms_text = "Hi we are Eye Color Lab" . $sms_end;
+    $sms_text = "Hi we are Eye Color Lab, " . $sms_end;
     $sms = CRestECL::call(
         'bizproc.workflow.start',
         [
