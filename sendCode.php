@@ -42,12 +42,14 @@ try {
     $stmt->bind_param('si', $code, $id);
     $result = $stmt->execute();
 
-    $sql = "SELECT buildings.name FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ?";
+    $sql = "SELECT buildings.name FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ".$apt;
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $apt);
-    $result = $stmt->execute();
+    $result = mysqli_query($conn, $sql);
+    $res = mysqli_fetch_assoc($result);
 
-    var_dump($result);
+    $address = $res['buildings.name'];
+
+    var_dump($address);
 
     $conn->close();
 
