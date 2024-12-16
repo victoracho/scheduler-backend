@@ -47,9 +47,7 @@ try {
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
 
-    $address = $res;
-
-    var_dump($address);
+    $address = $res['name'];
 
     $conn->close();
 
@@ -69,7 +67,7 @@ $hasta = new DateTime($end);
 $hasta = $hasta->format('M d, Y');
 
 // TODO CAMBIAR TEXTO DE MENSAJE
-$sms_text = 'Your have and reservation in  from '.$desde. ' to '.$hasta. ' in Apartment '.$apt.' your Code is '.$code;
+$sms_text = 'Your have and reservation in '. $address.' from '.$desde. ' to '.$hasta. ' in Apartment '.$apt.' your Code is '.$code;
 
 if ($crm == "DASO"){
     $sms = CRestDASO::call(
