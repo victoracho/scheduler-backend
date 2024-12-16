@@ -28,7 +28,7 @@ try {
     $start = $_GET['start'];
     $end = $_GET['end'];
     $apt = $_GET['apt'];
-
+    $address = '';
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
 
