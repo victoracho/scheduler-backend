@@ -25,6 +25,9 @@ try {
     $id = preg_replace('~\D~', '', $id);
     $code = $_GET['code'];
     $deal_id = $_GET['deal_id'];
+    $start = $_GET['start'];
+    $end = $_GET['end'];
+    $apt = $_GET['apt'];
 
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -52,8 +55,14 @@ try {
 
 //$deal_id = '55066';
 
+$desde = new DateTime($start);
+$desde = $desde->format('M d, Y');
+
+$hasta = new DateTime($end);
+$hasta = $hasta->format('M d, Y');
+
 // TODO CAMBIAR TEXTO DE MENSAJE
-$sms_text = 'Your Apartment Code is '.$code;
+$sms_text = 'Your have and reservation from '.$desde. ' to '.$hasta.'in Apartment '.$apt.' your Code is '.$code;
 
 if ($crm == "DASO"){
     $sms = CRestDASO::call(
