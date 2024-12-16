@@ -24,11 +24,9 @@ try {
     $id = $_GET['id'];
     $id = preg_replace('~\D~', '', $id);
     $code = $_GET['code'];
-    $deal_id = $_GET['deal_id'];
-    $start = $_GET['start'];
-    $end = $_GET['end'];
     $apt = $_GET['apt'];
-    $address = '';
+    $deal_id = $_GET['deal_id'];
+
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -42,12 +40,7 @@ try {
     $stmt->bind_param('si', $code, $id);
     $result = $stmt->execute();
 
-    $sql = "SELECT buildings.name FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ".$apt;
-    $stmt = $conn->prepare($sql);
-    $result = mysqli_query($conn, $sql);
-    $res = mysqli_fetch_assoc($result);
 
-    $address = $res['name'];
 
     $conn->close();
 
@@ -59,17 +52,10 @@ try {
 }
 
 //$deal_id = '55066';
-
-$desde = new DateTime($start);
-$desde = $desde->format('M d, Y');
-
-$hasta = new DateTime($end);
-$hasta = $hasta->format('M d, Y');
-
-// TODO CAMBIAR TEXTO DE MENSAJE
-$sms_text = 'Your have and reservation in '. $address.' from '.$desde. ' to '.$hasta. ' in Apartment '.$apt.' your Code is '.$code;
+$sms_end = 'Today is your reservation in Apartment '.$apt.' your Entry Code is '.$code;
 
 if ($crm == "DASO"){
+    $sms_text = "Hi we are you Plastic Surgery Clinic" . $sms_end;
     $sms = CRestDASO::call(
         'bizproc.workflow.start',
         [
@@ -113,6 +99,7 @@ if ($crm == "DASO"){
 }
 
 if ($crm == "DDS"){
+    $sms_text = "Hi we are Dental Design Smile" . $sms_end;
     $sms = CRestDDS::call(
         'bizproc.workflow.start',
         [
@@ -123,7 +110,7 @@ if ($crm == "DDS"){
                 $deal_id
             ],
             'PARAMETERS' => [
-                'TEXT' => 'Your Room Code is '.$code
+                'TEXT' => $sms_text
             ]
         ]
     );
@@ -154,6 +141,7 @@ if ($crm == "DDS"){
 }
 
 if ($crm == "ECL"){
+    $sms_text = "Hi we are Eye Color Lab" . $sms_end;
     $sms = CRestECL::call(
         'bizproc.workflow.start',
         [
@@ -164,7 +152,7 @@ if ($crm == "ECL"){
                 $deal_id
             ],
             'PARAMETERS' => [
-                'TEXT' => 'Your Room Code is '.$code
+                'TEXT' => $sms_text
             ]
         ]
     );

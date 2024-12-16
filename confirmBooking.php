@@ -1,4 +1,16 @@
 <?php
+
+$crm = $_GET['crm'];
+if ($crm == "DASO") {
+    require_once(__DIR__ . '/CRestDASO.php');
+}
+if ($crm == "DDS") {
+    require_once(__DIR__ . '/CRestDDS.php');
+}
+if ($crm == "ECL") {
+    require_once(__DIR__ . '/CRestECL.php');
+}
+
 header("Access-Control-Allow-Origin: *");
 error_reporting(E_ALL);
 header("Access-Control-Allow-Headers: Content-Type");
@@ -16,6 +28,11 @@ try {
   $id = preg_replace('~\D~', '', $id);
 
   $status = $_GET['status'];
+  $start = $_GET['start'];
+  $end = $_GET['end'];
+  $apt = $_GET['apt'];
+  $deal_id = $_GET['deal_id'];
+  $address = '';
 
   // Create connection
   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -38,6 +55,13 @@ try {
   $stmt->bind_param('si', $conf_status, $id);
   $result = $stmt->execute();
 
+    $sql = "SELECT buildings.name FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ".$apt;
+    $stmt = $conn->prepare($sql);
+    $result = mysqli_query($conn, $sql);
+    $res = mysqli_fetch_assoc($result);
+
+    $address = $res['name'];
+
   $conn->close();
 
   $response = array(
@@ -50,4 +74,70 @@ try {
   );
   echo json_encode($response);
 }
+
+$desde = new DateTime($start);
+$desde = $desde->format('M d, Y');
+
+$hasta = new DateTime($end);
+$hasta = $hasta->format('M d, Y');
+
+$sms_end = 'Your have and reservation in '. $address.' from '.$desde. ' to '.$hasta;
+
+if ($crm == "DASO"){
+    $sms_text = "Hi we are you Plastic Surgery Clinic, " . $sms_end;
+    $sms = CRestDASO::call(
+        'bizproc.workflow.start',
+        [
+            'TEMPLATE_ID' => 233,
+            'DOCUMENT_ID' => [
+                'crm',
+                'CCrmDocumentDeal',
+                $deal_id
+            ],
+            'PARAMETERS' => [
+                'TEXT' => $sms_text
+            ]
+        ]
+    );
+    echo "DASO MESSENGE SUCCESSFULLY";
+}
+
+if ($crm == "DDS"){
+    $sms_text = "Hi we are Dental Design Smile, " . $sms_end;
+    $sms = CRestDDS::call(
+        'bizproc.workflow.start',
+        [
+            'TEMPLATE_ID' => 426,
+            'DOCUMENT_ID' => [
+                'crm',
+                'CCrmDocumentDeal',
+                $deal_id
+            ],
+            'PARAMETERS' => [
+                'TEXT' => $sms_text
+            ]
+        ]
+    );
+    echo "DDS MESSENGE SUCCESSFULLY";
+}
+
+if ($crm == "ECL"){
+    $sms_text = "Hi we are Dental Design Smile, " . $sms_end;
+    $sms = CRestECL::call(
+        'bizproc.workflow.start',
+        [
+            'TEMPLATE_ID' => 164,
+            'DOCUMENT_ID' => [
+                'crm',
+                'CCrmDocumentDeal',
+                $deal_id
+            ],
+            'PARAMETERS' => [
+                'TEXT' => $sms_text
+            ]
+        ]
+    );
+    echo "ECL MESSENGE SUCCESSFULLY";
+}
+
 die();
