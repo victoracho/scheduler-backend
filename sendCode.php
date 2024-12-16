@@ -62,7 +62,7 @@ $hasta = new DateTime($end);
 $hasta = $hasta->format('M d, Y');
 
 // TODO CAMBIAR TEXTO DE MENSAJE
-$sms_text = 'Your have and reservation from '.$desde. ' to '.$hasta.'in Apartment '.$apt.' your Code is '.$code;
+$sms_text = 'Your have and reservation from '.$desde. ' to '.$hasta.' in Apartment '.$apt.' your Code is '.$code;
 
 if ($crm == "DASO"){
     $sms = CRestDASO::call(
