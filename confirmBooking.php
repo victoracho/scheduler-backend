@@ -81,7 +81,7 @@ $desde = $desde->format('M d, Y');
 $hasta = new DateTime($end);
 $hasta = $hasta->format('M d, Y');
 
-$sms_end = 'Your have and reservation in '. $address.' from '.$desde. ' to '.$hasta;
+$sms_end = 'Your have a reservation in '. $address.' from '.$desde. ' to '.$hasta;
 
 if ($crm == "DASO"){
     $sms_text = "Hi we are you Plastic Surgery Clinic, " . $sms_end;
