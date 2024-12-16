@@ -119,6 +119,17 @@ if ($crm == "DDS"){
         ]
     );
     echo "DDS MESSENGE SUCCESSFULLY";
+
+    $comment = CRestDASO::call(
+        'crm.timeline.comment.add',
+        [
+            'fields' =>  [
+                'ENTITY_ID' => $deal_id,
+                'ENTITY_TYPE' => "deal",
+                'COMMENT' => "The reservation from ".$desde ." to " .$hasta . " in ".  $address . " Apt: " .$apt. " has been Confirmed",
+            ],
+        ],
+    );
 }
 
 if ($crm == "ECL"){
