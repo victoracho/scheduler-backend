@@ -131,7 +131,16 @@ if ($crm == "DDS"){
     );
     echo "DDS MESSENGE SUCCESSFULLY";
 
-
+    $comment = CRestDDS::call(
+        'crm.timeline.comment.add',
+        [
+            'fields' =>  [
+                'ENTITY_ID' => $deal_id,
+                'ENTITY_TYPE' => "deal",
+                'COMMENT' => "The reservation from ".$desde ." to " .$hasta . " in ".  $address . " Apt: " .$apt. " has been Confirmed",
+            ],
+        ],
+    );
 }
 
 if ($crm == "ECL"){
@@ -151,6 +160,17 @@ if ($crm == "ECL"){
         ]
     );
     echo "ECL MESSENGE SUCCESSFULLY";
+
+    $comment = CRestECL::call(
+        'crm.timeline.comment.add',
+        [
+            'fields' =>  [
+                'ENTITY_ID' => $deal_id,
+                'ENTITY_TYPE' => "deal",
+                'COMMENT' => "The reservation from ".$desde ." to " .$hasta . " in ".  $address . " Apt: " .$apt. " has been Confirmed",
+            ],
+        ],
+    );
 }
 
 die();
