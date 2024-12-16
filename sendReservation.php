@@ -168,7 +168,7 @@ try {
         'im.notify.system.add',
         [
             'USER_ID' => 33,
-            'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://dds.miami/devops/placement/62/">Calendar</a>',
+            'MESSAGE' => 'A new pre-reservation From '. $desde .' to '.$hasta.' has been added to the <a href="https://dds.miami/devops/placement/91/">Calendar</a>',
         ]
     );
 
