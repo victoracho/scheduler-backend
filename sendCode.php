@@ -47,7 +47,7 @@ try {
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
 
-    $address = $res['buildings.name'];
+    $address = $res;
 
     var_dump($address);
 
