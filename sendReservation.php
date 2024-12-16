@@ -1,7 +1,7 @@
 <?php
 
-/*
 $crm = $_GET['crm'];
+/*
 if ($crm == "DASO"){
     require_once(__DIR__ . '/CRestDASO.php');
 }if ($crm == "DDS"){
@@ -178,7 +178,7 @@ try {
   echo json_encode($response);
 } catch (Exception $e) {
   $response = array(
-    'message' => 'An error has ocurred'
+    'message' => $e->getMessage()
   );
   echo json_encode($response);
 }
