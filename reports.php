@@ -198,6 +198,7 @@ if (isset($_GET['desde']) && $_GET['desde'] != null) {
               'crm' => "",
               'apartment_name' => "",
               'building_name' => "",
+              'link' => "",
           ];
   }
 }
