@@ -231,17 +231,17 @@ if (isset($_GET['exportar'])) {
     <!-- Filtros de Fecha -->
     <form action="reports.php" autocomplete="off" method="GET">
       <label for="fecha_desde">FROM DATE:</label>
-      <input type="text" id="desde" name="desde" placeholder="Select Date From">
+      <input type="text" id="desde" name="desde" placeholder="Select Date From" value="<?= isset($_GET['desde']) ? htmlspecialchars($_GET['desde']) : '' ?>">
       <label for="fecha_hasta">TO DATE:</label>
-      <input type="text" id="hasta" name="hasta" placeholder="Select Date To">
+      <input type="text" id="hasta" name="hasta" placeholder="Select Date To" value="<?= isset($_GET['hasta']) ? htmlspecialchars($_GET['hasta']) : '' ?>">
         <label for="build">Building:</label>
         <select name="build" id="build-select">
-            <option value="0">All</option>
-            <option value="1">2268 NW</option>
-            <option value="2">North Miami</option>
+            <option value="0" <?= isset($_GET['build']) && $_GET['build'] == '0' ? 'selected' : '' ?>>All</option>
+            <option value="1" <?= isset($_GET['build']) && $_GET['build'] == '1' ? 'selected' : '' ?>>2268 NW</option>
+            <option value="2" <?= isset($_GET['build']) && $_GET['build'] == '2' ? 'selected' : '' ?>>North Miami</option>
         </select>
         <label for="apt" >Apt:</label>
-        <input type="number" placeholder="All" id="apt" name="apt">
+        <input type="number" placeholder="All" id="apt" name="apt" value="<?= isset($_GET['apt']) ? htmlspecialchars($_GET['apt']) : '' ?>">
       <button submit id="filtrar">Filter</button>
       <button submit id="exportar" name="exportar" type="submit">Export</button>
     </form>
