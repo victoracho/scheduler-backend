@@ -50,7 +50,7 @@ try {
   $result = $stmt->execute();
 
   $conf_status = "unconfirmed";
-  $sql = "UPDATE confirmantions SET status= ?, substatus= ? WHERE  ID_reservations = ?";
+  $sql = "UPDATE confirmantions SET status= ?, prestatus= ? WHERE  ID_reservations = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param('ssi', $conf_status, $conf_status, $id);
   $result = $stmt->execute();
