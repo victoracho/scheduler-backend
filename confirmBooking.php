@@ -50,9 +50,9 @@ try {
   $result = $stmt->execute();
 
   $conf_status = "unconfirmed";
-  $sql = "UPDATE confirmantions SET status= ? WHERE  ID_reservations = ?";
+  $sql = "UPDATE confirmantions SET status= ?, substatus= ? WHERE  ID_reservations = ?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('si', $conf_status, $id);
+  $stmt->bind_param('ssi', $conf_status, $conf_status, $id);
   $result = $stmt->execute();
 
     $sql = "SELECT buildings.name FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ".$apt;
@@ -144,7 +144,7 @@ if ($crm == "DDS"){
 }
 
 if ($crm == "ECL"){
-    $sms_text = "Hi we are Dental Design Smile, " . $sms_end;
+    $sms_text = "Hi we are Eye Color Lab, " . $sms_end;
     $sms = CRestECL::call(
         'bizproc.workflow.start',
         [
