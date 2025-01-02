@@ -13,9 +13,9 @@ if ($crm == "DASO"){
 
 require_once(__DIR__ . '/CRestDDS.php');
 
-//header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
 //error_reporting(E_ALL);
-//header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Headers: Content-Type");
 //ini_set('display_errors', 'On');
 
 //require_once(__DIR__ . '/crest.php');
