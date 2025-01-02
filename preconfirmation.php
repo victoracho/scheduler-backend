@@ -4,22 +4,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require 'vendor/autoload.php';
 
-
-// Handle form submission
-
-
-// obtengo todos los eventos
 $results = [];
-
-  $desde =  date('Y-m-d');
-
-  $hasta =  date('Y-m-d');
-
-
-  if ($desde == $hasta) {
-    $desde = $desde . 'T00:00:00';
-    $hasta = $hasta . 'T23:59:00';
-  }
 
     $ini = parse_ini_file('app.ini');
     $servername = $ini['servername'];
@@ -65,7 +50,7 @@ $results = [];
     apartments ON reservations.apartment_id = apartments.id
     JOIN 
     buildings ON apartments.building_id = buildings.id
-    where CURDATE() = confirmantions.date AND reservations.status = 'reserved' AND buildings.id =".$build ;
+    where CURDATE() = confirmantions.date AND reservations.status = 'reserved' AND confirmantions.prestatus = 'unconfirmed' AND buildings.id =".$build ;
   }
 
 
@@ -152,7 +137,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirm_id'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pacientes - DataTable</title>
+  <title>Today Reservations</title>
   <!-- Incluir DataTables CSS y jQuery -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
