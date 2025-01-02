@@ -38,8 +38,11 @@ $results = [];
     $status = null;
   }
 
-    $build =  $_GET['build'];
-
+    if (!$_GET){
+        $build = 0;
+    }else{
+        $build =  $_GET['build'];
+    }
 
     if ($build == 0){
       $sql = "SELECT confirmantions.id AS confirm_id, confirmantions.date AS confirm_date, confirmantions.ID_reservations AS ID_reservations, reservations.id AS reservation_id, reservations.name AS reservation_name, reservations.status, reservations.start, reservations.end, reservations.deal_id, reservations.comentary, reservations.crm, apartments.name AS apartment_name, buildings.name AS building_name
