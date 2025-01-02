@@ -55,12 +55,12 @@ try {
   $stmt->bind_param('ssi', $conf_status, $conf_status, $id);
   $result = $stmt->execute();
 
-    $sql = "SELECT buildings.name FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ".$apt;
+    $sql = "SELECT buildings.name, buildings.comentary FROM buildings INNER JOIN apartments ON buildings.id = apartments.building_id WHERE apartments.id = ".$apt;
     $stmt = $conn->prepare($sql);
     $result = mysqli_query($conn, $sql);
     $res = mysqli_fetch_assoc($result);
 
-    $address = $res['name'];
+    $address = $res['comentary'];
 
   $conn->close();
 
