@@ -21,7 +21,18 @@ if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT * FROM confirmantions where date = '$day' AND status = 'unconfirmed'";
+//$sql = "SELECT * FROM confirmantions where date = '$day' AND status = 'unconfirmed'";
+
+
+$sql = "SELECT confirmantions.*, reservations.name AS name, apartments.name AS apartment
+       FROM confirmantions
+       JOIN 
+         reservations ON confirmantions.ID_reservations = reservations.id
+        JOIN 
+        apartments ON reservations.apartment_id = apartments.id
+       where confirmantions.date = '$day' AND confirmantions.status = 'unconfirmed'";
+
+
 $result = mysqli_query($conn, $sql);
 
 $confirmantions = [];
@@ -31,15 +42,24 @@ if (mysqli_num_rows($result) > 0) {
   $moveDisabled = true;
   $resizeDisabled = true;
   while ($res = mysqli_fetch_assoc($result)) {
+    $color = "";
+    if ($res['prestatus'] == "CONFIRMED"){
+        $color = "🟢";
+    }
+    if ($res['prestatus'] == "EMPTY"){
+        $color = "🔴";
+    }
     $confirmantions[] =
       [
         'id' => $res['ID'],
         'date' => $res['date'],
         'reservation' => $res['ID_reservations'],
         'user' => $res['user'],
+        'name' => $res['name'],
+        'apartment' => $res['apartment'],
         'status' => $res['status'],
-        'moveDisabled' => $moveDisabled,
-        'resizeDisabled' => $resizeDisabled
+        'prestatus' => $res['prestatus'],
+        'color' => $color,
       ];
   }
 }
