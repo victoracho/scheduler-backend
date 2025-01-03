@@ -24,7 +24,7 @@ if (!$conn) {
 //$sql = "SELECT * FROM confirmantions where date = '$day' AND status = 'unconfirmed'";
 
 
-$sql = "SELECT confirmantions.*, reservations.name AS name, apartments.name AS apartment
+$sql = "SELECT confirmantions.*, reservations.name AS name, reservations.start AS start, apartments.name AS apartment
        FROM confirmantions
        JOIN 
          reservations ON confirmantions.ID_reservations = reservations.id
@@ -60,6 +60,7 @@ if (mysqli_num_rows($result) > 0) {
         'status' => $res['status'],
         'prestatus' => $res['prestatus'],
         'color' => $color,
+        'start' => $res['start'],
       ];
   }
 }
