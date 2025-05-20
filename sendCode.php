@@ -41,7 +41,6 @@ try {
     $result = $stmt->execute();
 
 
-
     $conn->close();
 
 } catch (Exception $e) {
@@ -51,11 +50,72 @@ try {
     echo json_encode($response);
 }
 
-//$deal_id = '55066';
-$sms_end = 'Today is your reservation in Apartment '.$apt.' your Entry Code is '.$code;
+$sql = "SELECT 
+    b.comentary as adddress, a.name as apt, rv.start as start_date, rv.end as end_date, b.wifi_user as wifi_user, b.wifi_pass as wifi_pass
+FROM 
+    reservations AS rv
+    INNER JOIN apartments AS a 
+        ON rv.apartment_id = a.id
+    INNER JOIN buildings AS b
+        ON a.building_id = b.id
+WHERE rv.id =".$id;
+$stmt = $conn->prepare($sql);
+$result = mysqli_query($conn, $sql);
+$res = mysqli_fetch_assoc($result);
+
+$address = $res['adddress'];
+$apt_number = $res['apt'];
+$start = $res['start_date'];
+$end = $res['end_date'];
+$wifi_user = $res['wifi_user'];
+$wifi_pass = $res['wifi_pass'];
+$conn->close();
+
+$desde = new DateTime($start);
+$desde = $desde->format('F j, Y, \a\t g:i A');
+
+$hasta = new DateTime($end);
+$hasta = $hasta->format('F j, Y, \a\t g:i A');
+
+
+if ($crm == "DDS"){
+    $crm_text = "Dental Design Smile";
+}if ($crm == "ECL"){
+    $crm_text = "Eye Color Lab";
+}if ($crm == "DASO"){
+    $crm_text = "Daso Plastic Surgery";
+}
+$sms_template = "Thank you for Staying at ".$crm_text." Apartments. Located at:\n
+".$address."\n
+\n
+Apartment # ".$apt_number."\n
+I have added an access code for you to use my lock.\n
+\n
+Here's when you can use your access code:\n
+Door Lock: ".$code."\n
+\n
+".$desde."till\n  
+".$hasta."\n
+\n
+CHECK-OUT TIME: 11:00 AM!!\n
+\n
+TO UNLOCK:\n
+From the outside, press the Home logo and enter code!\n
+From the inside, turn the thumb turn.\n
+\n
+TO LOCK:\n
+From the outside,press the Lock logo.\n
+From the inside, turn the thumb to turn\n
+\n
+WiFi:\n
+User: ".$wifi_user."\n
+Password: ".$wifi_pass."\n
+";
+
+//$sms_end = 'Today is your reservation in Apartment '.$apt.' your Entry Code is '.$code;
 
 if ($crm == "DASO"){
-    $sms_text = "Hi we are you Plastic Surgery Clinic, " . $sms_end;
+    $sms_text = $sms_template;
     $sms = CRestDASO::call(
         'bizproc.workflow.start',
         [
@@ -99,7 +159,7 @@ if ($crm == "DASO"){
 }
 
 if ($crm == "DDS"){
-    $sms_text = "Hi we are Dental Design Smile, " . $sms_end;
+    $sms_text = $sms_template;
     $sms = CRestDDS::call(
         'bizproc.workflow.start',
         [
@@ -141,7 +201,7 @@ if ($crm == "DDS"){
 }
 
 if ($crm == "ECL"){
-    $sms_text = "Hi we are Eye Color Lab, " . $sms_end;
+    $sms_text = $sms_template;
     $sms = CRestECL::call(
         'bizproc.workflow.start',
         [

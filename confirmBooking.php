@@ -84,6 +84,7 @@ $hasta = $hasta->format('M d, Y');
 $sms_end = 'Your have a reservation in '. $address.' from '.$desde. ' to '.$hasta;
 
 if ($crm == "DASO"){
+    /*
     $sms_text = "Hi we are you Plastic Surgery Clinic, " . $sms_end;
     $sms = CRestDASO::call(
         'bizproc.workflow.start',
@@ -100,6 +101,7 @@ if ($crm == "DASO"){
         ]
     );
     echo "DASO MESSENGE SUCCESSFULLY";
+    */
 
     $comment = CRestDASO::call(
         'crm.timeline.comment.add',
@@ -114,6 +116,7 @@ if ($crm == "DASO"){
 }
 
 if ($crm == "DDS"){
+    /*
     $sms_text = "Hi we are Dental Design Smile, " . $sms_end;
     $sms = CRestDDS::call(
         'bizproc.workflow.start',
@@ -130,6 +133,7 @@ if ($crm == "DDS"){
         ]
     );
     echo "DDS MESSENGE SUCCESSFULLY";
+    */
 
     $comment = CRestDDS::call(
         'crm.timeline.comment.add',
@@ -144,6 +148,7 @@ if ($crm == "DDS"){
 }
 
 if ($crm == "ECL"){
+    /*
     $sms_text = "Hi we are Eye Color Lab, " . $sms_end;
     $sms = CRestECL::call(
         'bizproc.workflow.start',
@@ -160,6 +165,7 @@ if ($crm == "ECL"){
         ]
     );
     echo "ECL MESSENGE SUCCESSFULLY";
+    */
 
     $comment = CRestECL::call(
         'crm.timeline.comment.add',
