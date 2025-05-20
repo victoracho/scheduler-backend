@@ -53,7 +53,7 @@ try {
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $sql = "SELECT 
-    b.comentary as address, a.name as apt, rv.start as start_date, rv.end as end_date, b.wifi_user as wifi_user, b.wifi_pass as wifi_pass
+    b.comentary as address, a.name as apt, rv.start as start_date, rv.end as end_date, b.wifi_user as wifi_user, b.wifi_pass as wifi_pass, b.code as build_code
 FROM 
     reservations AS rv
     INNER JOIN apartments AS a 
@@ -71,6 +71,7 @@ $start = $res['start_date'];
 $end = $res['end_date'];
 $wifi_user = $res['wifi_user'];
 $wifi_pass = $res['wifi_pass'];
+$build_code_txt = $res['build_code']."\n" ?? "\n";
 $conn->close();
 
 $desde = new DateTime($start);
@@ -95,6 +96,7 @@ I have added an access code for you to use my lock.\n
 \n
 Here's when you can use your access code:\n
 Door Lock: ".$code."\n
+".$build_code_txt."
 \n
 ".$desde." till\n  
 ".$hasta."\n
