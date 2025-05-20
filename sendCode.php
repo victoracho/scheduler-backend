@@ -50,6 +50,8 @@ try {
     echo json_encode($response);
 }
 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
 $sql = "SELECT 
     b.comentary as adddress, a.name as apt, rv.start as start_date, rv.end as end_date, b.wifi_user as wifi_user, b.wifi_pass as wifi_pass
 FROM 
