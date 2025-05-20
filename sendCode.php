@@ -90,27 +90,20 @@ if ($crm == "DDS"){
 }
 $sms_template = "Thank you for Staying at ".$crm_text." Apartments. Located at:\n
 ".$address."\n
-\n
 Apartment # ".$apt_number."\n
 I have added an access code for you to use my lock.\n
-\n
 Here's when you can use your access code:\n
-Door Lock: ".$code."\n
-".$build_code_txt."
-\n
+Door Lock: ".$code."
+".$build_code_txt."\n
 ".$desde." till\n  
 ".$hasta."\n
-\n
 CHECK-OUT TIME: 11:00 AM!!\n
-\n
 TO UNLOCK:\n
 From the outside, press the Home logo and enter code!\n
 From the inside, turn the thumb turn.\n
-\n
 TO LOCK:\n
 From the outside,press the Lock logo.\n
 From the inside, turn the thumb to turn\n
-\n
 WiFi:\n
 User: ".$wifi_user."\n
 Password: ".$wifi_pass."\n
