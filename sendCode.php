@@ -53,7 +53,7 @@ try {
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 $sql = "SELECT 
-    b.comentary as adddress, a.name as apt, rv.start as start_date, rv.end as end_date, b.wifi_user as wifi_user, b.wifi_pass as wifi_pass
+    b.comentary as address, a.name as apt, rv.start as start_date, rv.end as end_date, b.wifi_user as wifi_user, b.wifi_pass as wifi_pass
 FROM 
     reservations AS rv
     INNER JOIN apartments AS a 
@@ -65,7 +65,7 @@ $stmt = $conn->prepare($sql);
 $result = mysqli_query($conn, $sql);
 $res = mysqli_fetch_assoc($result);
 
-$address = $res['adddress'];
+$address = $res['address'];
 $apt_number = $res['apt'];
 $start = $res['start_date'];
 $end = $res['end_date'];
@@ -96,7 +96,7 @@ I have added an access code for you to use my lock.\n
 Here's when you can use your access code:\n
 Door Lock: ".$code."\n
 \n
-".$desde."till\n  
+".$desde." till\n  
 ".$hasta."\n
 \n
 CHECK-OUT TIME: 11:00 AM!!\n
