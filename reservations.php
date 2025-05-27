@@ -24,7 +24,7 @@ $firstDay = (clone $date)
     ->format('Y-m-d\TH:i:s');
 
 $lastDay = (clone $date)
-    ->modify('last day of next month')
+    ->modify('last day of this months')
     ->setTime(23, 59, 59)
     ->format('Y-m-d\TH:i:s');
 
