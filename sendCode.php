@@ -109,6 +109,12 @@ User: ".$wifi_user."\n
 Password: ".$wifi_pass."\n
 ";
 
+$comment_text = "Apartment Reservation Note:\n
+⚫ Address: ".$address."\n
+⚫ Apt. No.: .$apt_number\n
+⚫ Reservation Start Date: ".$desde."\n
+⚫ Reservation End Date: ".$hasta;
+
 //$sms_end = 'Today is your reservation in Apartment '.$apt.' your Entry Code is '.$code;
 
 if ($crm == "DASO"){
@@ -149,6 +155,17 @@ if ($crm == "DASO"){
         [
             'id' =>  $act_id
         ]
+    );
+
+    $comment = CRestDASO::call(
+        'crm.timeline.comment.add',
+        [
+            'fields' =>  [
+                'ENTITY_ID' => $deal_id,
+                'ENTITY_TYPE' => "deal",
+                'COMMENT' => $comment_text,
+            ],
+        ],
     );
 
 
@@ -194,6 +211,17 @@ if ($crm == "DDS"){
         ]
     );
 
+    $comment = CRestDDS::call(
+        'crm.timeline.comment.add',
+        [
+            'fields' =>  [
+                'ENTITY_ID' => $deal_id,
+                'ENTITY_TYPE' => "deal",
+                'COMMENT' => $comment_text,
+            ],
+        ],
+    );
+
     echo "DDS MESSENGE SUCCESSFULLY";
 }
 
@@ -235,6 +263,18 @@ if ($crm == "ECL"){
             'id' =>  $act_id
         ]
     );
+
+    $comment = CRestECL::call(
+        'crm.timeline.comment.add',
+        [
+            'fields' =>  [
+                'ENTITY_ID' => $deal_id,
+                'ENTITY_TYPE' => "deal",
+                'COMMENT' => $comment_text,
+            ],
+        ],
+    );
+
     echo "ECL MESSENGE SUCCESSFULLY";
 }
 
