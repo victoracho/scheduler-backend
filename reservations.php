@@ -10,10 +10,23 @@ $username = $ini['db_user'];
 $password = $ini['db_password'];
 $dbname = $ini['db_name'];
 
-$firstDay = $_GET['time'];
-$date = new DateTime($firstDay);
-$date->modify('last day of this months');
-$lastDay = $date->format('Y-m-d\TH:i:s');
+$input = $_GET['time'];
+$date = new DateTime($input);
+
+//$firstDay = $_GET['time'];
+//$date = new DateTime($firstDay);
+//$date->modify('last day of this months');
+//$lastDay = $date->format('Y-m-d\TH:i:s');
+
+$firstDay = (clone $date)
+    ->modify('first day of previous month')
+    ->setTime(0, 0, 0)
+    ->format('Y-m-d\TH:i:s');
+
+$lastDay = (clone $date)
+    ->modify('last day of next month')
+    ->setTime(23, 59, 59)
+    ->format('Y-m-d\TH:i:s');
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
