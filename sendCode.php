@@ -177,7 +177,7 @@ if ($crm == "DDS"){
     $sms = CRestDDS::call(
         'bizproc.workflow.start',
         [
-            'TEMPLATE_ID' => 426,
+            'TEMPLATE_ID' => 484,
             'DOCUMENT_ID' => [
                 'crm',
                 'CCrmDocumentDeal',
