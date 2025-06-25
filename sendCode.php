@@ -122,7 +122,7 @@ if ($crm == "DASO"){
     $sms = CRestDASO::call(
         'bizproc.workflow.start',
         [
-            'TEMPLATE_ID' => 233,
+            'TEMPLATE_ID' => 266,
             'DOCUMENT_ID' => [
                 'crm',
                 'CCrmDocumentDeal',
