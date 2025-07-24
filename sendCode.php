@@ -108,7 +108,7 @@ WiFi:\n
 User: ".$wifi_user."\n
 Password: ".$wifi_pass."\n
 Patients must access the apartment on the first day they were assigned before 10pm.\n
-If your door is locked or you cannot access it, please send a text message to the number: +1 (305) 713 5434 with the text: My door does not open.\n
+If your door is locked or you cannot access it, please send a text message to the number: +1 (305)-988-6429 with the text: My door does not open.\n
 An agent will respond to you in the shortest time possible.\n
 ";
 
